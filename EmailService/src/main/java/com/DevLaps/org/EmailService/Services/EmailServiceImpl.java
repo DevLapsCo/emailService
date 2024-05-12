@@ -21,7 +21,6 @@ public class EmailServiceImpl implements EmailService {
 
     public final JavaMailSender javaMailSender;
     public final TemplateEngine templateEngine;
-    public final ProjectService projectService;
     public static final String UTF_8_ENCODING = "UTF-8";
     public static final String EMAIL_TEMPLATE = "newProject";
     public static final String TEXT_HTML_ENCONDING = "text/html";
@@ -30,23 +29,22 @@ public class EmailServiceImpl implements EmailService {
 
     @Value("${spring.mail.verify.host}")
     private String host;
-    @Value("${spring.mail.username}")
-    private String fromEmail;
 
     @Override
     @Async
-    public void sendHtmlNewProjectEmail(Project projectData) {
+    public void sendHtmlNewProjectEmail(String email, String owner, String project, String projectType) {
         try {
             Context context = new Context();
 
-            context.setVariables(Map.of("projectName", projectData.getProjectName(), "projectType", projectData.getProjectType(), "companyName", projectData.getCompanyName(), "description", projectData.getDescription(), "owner", projectData.getOwner(), "goal", projectData.getGoal()));
+            context.setVariables(Map.of( "owner", owner));
             String text = templateEngine.process(EMAIL_TEMPLATE, context);
             MimeMessage message = getMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, UTF_8_ENCODING);
             helper.setPriority(1);
             helper.setSubject(NEW_USER_ACCOUNT_VERIFICATION);
+            String fromEmail = "panditmckenzie@gmail.com";
             helper.setFrom(fromEmail);
-            helper.setTo(projectData.getOwnerEmail());
+            helper.setTo(email);
             helper.setText(text, true);
             //Add attachments (Optional)
             /*FileSystemResource fort = new FileSystemResource(new File(System.getProperty("user.home") + "/Downloads/images/fort.jpg"));

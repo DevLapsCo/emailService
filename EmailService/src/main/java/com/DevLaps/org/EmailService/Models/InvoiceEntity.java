@@ -1,6 +1,7 @@
 package com.DevLaps.org.EmailService.Models;
 
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,23 +21,11 @@ public class InvoiceEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID Id;
     private String ProjectId;
-    private Services[] Service;
+    private String Service;
     private String Bill;
     private String SpecialMessage;
     private boolean confirmed;
 
 }
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Builder
-class Services{
 
-    private String ServiceName;
-    private String description;
-    private String Price;
-
-}

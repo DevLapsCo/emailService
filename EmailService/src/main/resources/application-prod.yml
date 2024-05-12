@@ -1,9 +1,12 @@
 #Database
-POSTGRES_SQL_USERNAME: postgres
-POSTGRES_SQL_PASSWORD: postgres
-POSTGRES_SQL_HOST: http://localhost
+POSTGRES_SQL_USERNAME: mckenzie
+POSTGRES_SQL_PASSWORD: mckenzie1234
+POSTGRES_SQL_HOST: localhost
+POSTGRES_SQL_PORT: 5432
+POSTGRES_SQL_DB: EmailServices
 
 SERVER_PORT: 3000
+ACTIVE_PROFILE: prod
 
 #Email Config
 EMAIL_HOST: smtp.gmail.com

@@ -27,12 +27,16 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public Project getProjectById(@RequestParam UUID Id){
+    public Project getProjectById(@PathVariable UUID Id){
         return projectService.getProjectById(Id);
     }
+//    @GetMapping("/{name}")
+//    public Project getProjectById(@RequestParam String name){
+//        return projectService.getProjectByName(name);
+//    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateProject(@RequestParam UUID id, @RequestBody Project projectBody){
+    public ResponseEntity<String> updateProject(@PathVariable UUID id, @RequestBody Project projectBody){
         projectService.updateProject(id, projectBody);
         return ResponseEntity.ok("Successfully Updated!");
     }
@@ -42,5 +46,7 @@ public class ProjectController {
         projectService.deleteProject(id);
         return ResponseEntity.ok("Successfully Deleted Project!");
     }
+
+
 
 }

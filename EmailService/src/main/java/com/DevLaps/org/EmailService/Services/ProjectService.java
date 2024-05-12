@@ -15,8 +15,23 @@ public class ProjectService {
 
     public final ProjectRepository projectRepository;
 
+    public final EmailServiceImpl emailService;
+
     public Project addProject(Project projectBody){
-        return projectRepository.save(projectBody);
+        emailService.sendHtmlNewProjectEmail(projectBody.getOwnerEmail(), projectBody.getOwner(), projectBody.getProjectName(), projectBody.getProjectType());
+        return projectRepository.save(Project
+                .builder()
+                        .CompanyName(projectBody.getCompanyName())
+                        .ProjectName(projectBody.getProjectName())
+                        .CompanyEmail(projectBody.getCompanyEmail())
+                        .ProjectType(projectBody.getProjectType())
+                        .Goal(projectBody.getGoal())
+                        .Description(projectBody.getDescription())
+                        .Owner(projectBody.getOwner())
+                        .OwnerEmail(projectBody.getOwnerEmail())
+                        .Contact(projectBody.getContact())
+                        .confirmed(false)
+                .build());
     }
 
     public List<Project> getAllProjects() {
@@ -27,9 +42,9 @@ public class ProjectService {
        return projectRepository.getReferenceById(id);
     }
 
-    public Project getProjectByName(String name){
-        return projectRepository.getReferenceByName(name);
-    }
+//    public Project getProjectByName(String ProjectName){
+//        return projectRepository.getReferenceByName(ProjectName);
+//    }
 
     public void updateProject(UUID id, Project newProjectDetails){
         Optional<Project> existingProject = projectRepository.findById(id);

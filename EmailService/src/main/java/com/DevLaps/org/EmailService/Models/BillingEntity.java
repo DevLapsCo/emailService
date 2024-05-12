@@ -1,7 +1,6 @@
 package com.DevLaps.org.EmailService.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -12,12 +11,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table( name = "Billings")
+@Table(name = "Billings")
 public class BillingEntity {
 
-   private UUID Id;
-   private String InvoiceID;
-   private String Bill;
-   private boolean paid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID Id;
+    private String InvoiceID;
+    private String Bill;
+    private boolean paid;
 
 }

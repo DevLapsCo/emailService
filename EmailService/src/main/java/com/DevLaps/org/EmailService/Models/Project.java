@@ -1,7 +1,6 @@
 package com.DevLaps.org.EmailService.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -15,6 +14,8 @@ import java.util.UUID;
 @Table( name = "Projects")
 public class Project {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID Id;
     private String ProjectName;
     private String ProjectType;
@@ -25,6 +26,6 @@ public class Project {
     private String CompanyEmail;
     private String OwnerEmail;
     private String Contact;
-    private String confirmed;
+    private boolean confirmed = false;
 
 }
