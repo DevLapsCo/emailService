@@ -11,6 +11,6 @@ ACTIVE_PROFILE: prod
 #Email Config
 EMAIL_HOST: smtp.gmail.com
 EMAIL_PORT: 587
-EMAIL_ID: panditmckenzie@gmail.com
-EMAIL_PASSWORD: nels uqof qhfj rhgp
+EMAIL_ID: pandit.alabi@devlaps.co
+EMAIL_PASSWORD: rbsv gzxo ktzk xntq
 VERIFY_EMAIL_HOST: http://localhost:${SERVER_PORT}

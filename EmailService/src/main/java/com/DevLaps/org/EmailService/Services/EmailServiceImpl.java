@@ -60,6 +60,35 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
+    @Override
+    public void sendQuickBillEmail(String email, String billing_to, String purpose, String bill, String url) {
+        try {
+            Context context = new Context();
+
+            context.setVariables(Map.of( "billed_to", billing_to, "bill", bill,"url", url));
+            String text = templateEngine.process("quickbill", context);
+            MimeMessage message = getMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, UTF_8_ENCODING);
+            helper.setPriority(1);
+            helper.setSubject("Upcoming Bill");
+            String fromEmail = "pandit.alabi@devlaps.co";
+            helper.setFrom(fromEmail);
+            helper.setTo(email);
+            helper.setText(text, true);
+            //Add attachments (Optional)
+            /*FileSystemResource fort = new FileSystemResource(new File(System.getProperty("user.home") + "/Downloads/images/fort.jpg"));
+            FileSystemResource dog = new FileSystemResource(new File(System.getProperty("user.home") + "/Downloads/images/dog.jpg"));
+            FileSystemResource homework = new FileSystemResource(new File(System.getProperty("user.home") + "/Downloads/images/homework.docx"));
+            helper.addAttachment(fort.getFilename(), fort);
+            helper.addAttachment(dog.getFilename(), dog);
+            helper.addAttachment(homework.getFilename(), homework);*/
+            javaMailSender.send(message);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
+
     private MimeMessage getMimeMessage() {
         return javaMailSender.createMimeMessage();
     }

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        line-height: 1.6;
+        }
+        .email-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 30px auto;
+        border-radius: 20px;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        }
+        .header {
+        /* background-color: #000000; */
+        padding: 10px;
+        text-align: center;
+        }
+        .header img {
+        max-width: 150px;
+        }
+        .content {
+        padding: 20px;
+        }
+        .footer {
+        background-color: #000000;
+        color: #ffffff;
+        text-align: left;
+        padding: 20px;
+        border-radius: 0 0 20px 20px;
+        font-size: 15px;
+        }
+        .footer img {
+        vertical-align: middle;
+        margin-right: 10px;
+        }
+        .table-container {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        }
+        .table-container th,
+        .table-container td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+        }
+        .table-container th {
+        background-color: #f4f4f4;
+        }
+        .balance {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 10px;
+        display: inline-block;
+        margin-top: 20px;
+        }
+
+        @media only screen and (max-width: 600px) {
+        .content {
+        padding: 10px;
+        }
+        .header img {
+        max-width: 100px;
+        }
+        .table-container th,
+        .table-container td {
+        font-size: 14px;
+        padding: 5px;
+        }
+        .balance {
+        font-size: 14px;
+        padding: 5px;
+        }
+        .footer {
+        padding: 10px;
+        }
+        .footer img {
+        width: 16px;
+        height: 16px;
+        }
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+    </div>
+    <div class="content">
+        <img src='http://images.devlaps.co/images/DevLaps.png' width="100px"/>
+        <p>Hi <span th:text=${billed_to}><span/>,</p>
+        <p>Please use the link in the button to make payments for the underlying bill as discussed of <strong>GHC</strong>
+            <strong th:text=${bill}></strong>.</p>
+        <p style="margin: 40px 0; text-align: center; cursor: pointer;"><a th:href="${url}" style="text-decoration: none; font-size:1.2rem; background-color: #000000; color: #ffffff; padding: 15px 60px; border-radius: 5px;">Make Payment</a></p>
+        <p>Pandit McKenzie Alabi<br>CEO<br>+233 509039446</p>
+    </div>
+    <div class="footer">
+        <img src="http://images.devlaps.co/images/dvlps.png" alt="Logo" width="20" height="20">
+        <a style="text-decoration: none; color: #ffffff;" href="tel:0509039446">Contact us.</a>
+    </div>
+</div>
+</body>
+</html>
+
+
